@@ -1,12 +1,7 @@
 import pandas
-import numpy
-import matplotlib.pyplot as plt
 from warnings import simplefilter
-from sklearn.utils import shuffle
-from sklearn.metrics import classification_report
-from sklearn.metrics import accuracy_score
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.metrics import confusion_matrix
+
+
 
 url_dt = "real_time_result_2.csv"
 
