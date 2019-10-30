@@ -48,10 +48,10 @@ def main():
             if bEqual:
                 print("All rssi valued -120")
             else:
-                new_row = ['Lorong', datetime.now().time().replace(
+                new_row = ['Ruang 2', datetime.now().time().replace(
                     microsecond=0), rssi[0], rssi[1], rssi[2], rssi[3], rssi[4]]
 
-                with open('rssi_data_test.csv', 'a', newline='') as csv_file:
+                with open('rssi_collected.csv', 'a', newline='') as csv_file:
                     writer = csv.writer(
                         csv_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
                     writer.writerow(new_row)

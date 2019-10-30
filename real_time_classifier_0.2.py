@@ -48,17 +48,19 @@ mac = ["3C:71:BF:C4:E1:F4", "B4:E6:2D:B7:72:45", "B4:E6:2D:B7:6B:91",
 # rssi[0] untuk Mac 1, rssi[1] untuk Mac 2, dst...
 rssi = [None, None, None, None, None]
 sensor = [None, None, None, None, None]
-true_location = None
-sub_location = None
+true_loc = None
+sub_loc = None
+
 
 @app.route("/", methods=['POST'])
 def main():
     try:
         data = request.get_json(force=True)
-        global rssi, sensor, true_location
+        global rssi, sensor, true_loc, sub_loc
         for i in range(len(mac)):
             if data['mac'] == 'locator':
-                true_location = data['rssi']
+                true_loc = data['true_loc']
+                sub_loc = data['sub_loc']
                 break
             elif data['mac'] == mac[i]:
                 if sensor[i] == None:
@@ -84,16 +86,16 @@ def main():
                 if x_ds != None:
                     predictions = knn.predict(x_ds)
                     compatibility = None
-                        if true_location == predictions[0]:
-                            compatibility = "Match"
-                        else:
-                            compatibility = "Mismatch"
+                    if true_loc == predictions[0]:
+                        compatibility = "Match"
+                    else:
+                        compatibility = "Mismatch"
                     print("Pada Jam ", datetime.now().time().replace(
                         microsecond=0), "beacon berada di", predictions[0])
                     new_row = [predictions[0], datetime.now(
-                    ).time().replace(microsecond=0), true_location,compatibility]
+                    ).time().replace(microsecond=0), true_loc, sub_loc, compatibility]
 
-                    if true_location != None:
+                    if true_loc != None:
                         with open('real_time_result_2.csv', 'a', newline='') as csv_file:
                             writer = csv.writer(
                                 csv_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
