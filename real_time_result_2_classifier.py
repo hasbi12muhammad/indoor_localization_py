@@ -9,7 +9,7 @@ from sklearn.metrics import confusion_matrix
 
 url_dt = "real_time_result_2.csv"
 
-header_dt = ['predict','time','true_location']
+header_dt = ['predict','time','true_loc','sub_loc','compatiblity']
 
 data = pandas.read_csv(url_dt, names=header_dt)
 
