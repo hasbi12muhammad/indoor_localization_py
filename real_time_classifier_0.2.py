@@ -1,7 +1,5 @@
 from sklearn.neighbors import KNeighborsClassifier
-from sklearn.metrics import classification_report
 from sklearn.utils import shuffle
-from sklearn import model_selection
 from warnings import simplefilter
 import pandas
 import logging
